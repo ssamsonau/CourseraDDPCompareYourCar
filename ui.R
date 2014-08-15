@@ -5,9 +5,9 @@ shinyUI(pageWithSidebar(
     headerPanel("Compare your's car mpg to others"),
     
     sidebarPanel(
-        selectInput("iTr", "Transmission", levels(DF$Trans), selected="A" ),
-        selectInput("iCyl", "Number of Cylinders", 
-                    sort(as.numeric(levels(DFs$X..Cyl))), selected="4"),
+        selectInput("iTr", "Transmission", levels(DFs$Trans), selected="A" ),
+        selectInput("iCyl", "Number of Cylinders",
+                    sort( unique(DFs$X..Cyl) ), selected=4),
         
         numericInput("iCarMPG", "Enter City mpg of your car", 15, 0, 230),
         

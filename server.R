@@ -1,4 +1,3 @@
-
 library(shiny)
 library(ggplot2)
 library(plyr)
@@ -14,7 +13,9 @@ shinyServer(
         
         G <-reactive({
             DFtemp <- subset(DFs, Trans == {input$iTr} & X..Cyl == {input$iCyl})
-
+            if( dim(DFtemp)[1]==0 ) 
+                stop("There is no data for a given paramenters combinations") ;
+            
             DFtemp <- ddply(DFtemp, "Mfr.Name", summarise, 
                             City.MPG=mean(City.MPG))   
             
